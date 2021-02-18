@@ -63,12 +63,12 @@ func main() {
 
 	// user 类型的值可以用来调用
 	// 使用值接收者声明的方法
-	bill := User{"Bill", "lius400@163.com", 33, false}
+	bill := User{Name: "Bill", Email: "lius400@163.com", Age: 33}
 	bill.notify()
 
 	// 指向 user 类型值的指针也可以用来调用
 	// 使用值接收者声明的方法
-	lisa := &User{"Lisa", "lisa@email.com", 32, true}
+	lisa := &User{Name: "Lisa", Email: "lisa@email.com", Age: 32, Privileged: true}
 	lisa.notify()
 
 	bill.changeEmail("bill@newdomain.com")
