@@ -1,4 +1,4 @@
-module awesomeProject
+module temProject
 
 go 1.15
 
