@@ -21,12 +21,12 @@ func Hello() string {
 
 func main() {
 
-	fmt.Println(Hello())
-	fmt.Println(helloString)
-	fmt.Println(quote.Go())
-	fmt.Println(quote.Opt())
+	defer fmt.Println(Hello())
+	defer fmt.Println(helloString)
+	defer fmt.Println(quote.Go())
+	defer fmt.Println(quote.Opt())
 	//var damageString = strconv.FormatFloat(damage, 'f', -1, 32)
-	fmt.Printf("damage value: %G\n", damage)
+	defer fmt.Printf("damage value: %G\n", damage)
 
 	point1 := new(int)
 	*point1 = 111
@@ -69,6 +69,7 @@ func main() {
 	// 指向 user 类型值的指针也可以用来调用
 	// 使用值接收者声明的方法
 	lisa := &User{Name: "Lisa", Email: "lisa@email.com", Age: 32, Privileged: true}
+	lisa.reNotify()
 	lisa.notify()
 
 	bill.changeEmail("bill@newdomain.com")
@@ -82,9 +83,15 @@ func removeColor(colors map[string]string, key string) {
 	delete(colors, key)
 }
 
+// reNotify 使用值接收者实现了一个方法,操作副本
+func (u User) reNotify() {
+	u.Name = "ReLisa"
+	fmt.Printf("Sending User Email To %s<%s>\n", u.Name, u.Email)
+}
+
 // notify 使用值接收者实现了一个方法
 func (u User) notify() {
-	fmt.Printf("Sending User Email To %s<%s>\n\n", u.Name, u.Email)
+	fmt.Printf("Sending User Email To %s<%s>\n", u.Name, u.Email)
 }
 
 // changeEmail 使用指针接收者实现了一个方法
