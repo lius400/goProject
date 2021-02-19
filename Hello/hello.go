@@ -15,12 +15,12 @@ var damageRate float32 = 0.17
 var damage = float32(attack-defence) * damageRate
 
 func Hello() string {
-	helloString := "Hello, World!"
-	return helloString
+	return "Hello, World!"
 }
 
 func main() {
 
+	defer fmt.Println(Return())
 	defer fmt.Println(Hello())
 	defer fmt.Println(helloString)
 	defer fmt.Println(quote.Go())
@@ -97,4 +97,10 @@ func (u User) notify() {
 // changeEmail 使用指针接收者实现了一个方法
 func (u *User) changeEmail(email string) {
 	u.Email = email
+}
+
+//不直接返回值
+func Return() (hi string) {
+	hi = "Hi!"
+	return
 }
