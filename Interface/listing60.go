@@ -31,6 +31,14 @@ type Admin struct {
 	level string
 }
 
+// 通过 admin 类型值的指针
+// 调用的方法
+func (a *Admin) notify() {
+	fmt.Printf("Sending admin email to %s<%s>\n",
+		a.name,
+		a.email)
+}
+
 // main 是应用程序的入口
 func main() {
 	// 创建一个 admin 用户
@@ -41,6 +49,12 @@ func main() {
 		},
 		level: "super",
 	}
+
+	// 我们可以直接访问内部类型的方法
+	ad.Reuser.notify()
+
+	// 内部类型的方法没有被提升
+	ad.notify()
 
 	// 给 Admin 用户发送一个通知
 	// 用于实现接口的内部类型的方法，被提升到
