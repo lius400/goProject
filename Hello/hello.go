@@ -14,14 +14,21 @@ var defence int = 20
 var damageRate float32 = 0.17
 var damage = float32(attack-defence) * damageRate
 
-func Hello() string {
+func Hello(change string) string {
+	change = "Hello, Change!"
 	return "Hello, World!"
 }
 
 func main() {
 
+	intValue := 11
+	floatValue := 13.333
+	defer fmt.Println("int 转 float:", float32(intValue))
+	defer fmt.Println("float 转 int:", int(floatValue))
+	change := "Hello, World!"
+	Hello(change)
 	defer fmt.Println(Return())
-	defer fmt.Println(Hello())
+	defer fmt.Println("change:", change)
 	defer fmt.Println(helloString)
 	defer fmt.Println(quote.Go())
 	defer fmt.Println(quote.Opt())
